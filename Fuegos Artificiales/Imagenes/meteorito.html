@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><meta charset="utf-8">
+<style>
+
+  html,
+  body,
+  body:after,
+  canvas {
+    content: "";
+    background: #012;
+    margin: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  body:after {
+    background: linear-gradient(rgba(0,17,34,0) 50%, rgba(0,17,34,.3) 50%) top left/100% 8px;
+  }
+
+</style>
+<script>  
+  function audio(rep){
+    var reproducir = new Audio();
+    reproducir.src = rep;
+    reproducir.play();
+  }
+
+  window.addEventListener("load", function(){
+    document.querySelectorAll("body button")[0].addEventListener("click", function(){
+        audio("audio/fuegos.mp3");
+    }, false);
+  },false);
+
+  window.addEventListener("load", function(){
+    document.querySelectorAll("body button")[1].addEventListener("click", function(){
+        audio("audio/intro.mp3");
+    }, false);
+  },false);
+
+
+  window.addEventListener("load", function(){
+    document.querySelectorAll("body button")[2].addEventListener("click", function(){
+        audio("audio/final.mp3");
+    }, false);
+  },false);
+
+  </script>
+</head><body>
+<button>Fuegos</button> <button>suspenso</button> <button>final</button>
+<canvas height="657" width="1366" id="c"></canvas>
+<script>
+
+    const ctx = c.getContext('2d');
+    W = c.width = innerWidth;
+    H = c.height = innerHeight;
+    x = Math.random()*W;
+    y= Math.random()*180;
+    i=1;
+    j=1;
+    actualtime = 0;
+    renderFrame = ms =>{
+        requestAnimationFrame(renderFrame);
+        //LIMPIAR LA PANTALLA
+        ctx.fillStyle = 'rgba(0,17,34,.2)'; 
+        ctx.fillRect(0, 0, W, H);
+       
+        if(actualtime+2000<=ms)  {
+            actualtime=ms;
+            x=Math.random()*W;
+            y= Math.random()*1;
+            i=0.25+i;   // velocidad de cambio 
+            j=0.5+j;
+        }
+        ctx.fillStyle = "red";
+        ctx.fillRect(x,y,i,j);
+
+        x=-5+x;
+        y= 5+y;
+        console.log(ms);
+    
+}
+
+ renderFrame(0);
+
+    
+</script>
+</body></html>
