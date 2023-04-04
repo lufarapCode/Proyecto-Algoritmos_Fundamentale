@@ -1,4 +1,4 @@
-# ****** Proyecto-Algoritmos_Fundamentales **************
+# ***** Proyecto Algoritmos Fundamentales **********
 
 Proyecto para medir la complejidad algoritmica. 
 
